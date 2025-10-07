@@ -1,4 +1,4 @@
-maric <- readr::read_csv("/Users/mmiche/Desktop/TeachingClass/FS2025/TheorieseminarFS25/ProjectMaricAddOn/Maric2022_20250422/baza_cov2soul_recode_final_07.3.2022_no_code.csv")
+maric <- readr::read_csv("baza_cov2soul_recode_final_07.3.2022_no_code.csv")
 # names(maric)
 
 # Example of preprocessing:
