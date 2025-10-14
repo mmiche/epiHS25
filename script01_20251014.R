@@ -121,3 +121,21 @@ dgcurMod
 # check VIF for no perfect multicollinearity assumption
 car::vif(dgcurMod)
 
+# check linearity for the yearsSmoke variable - instead yearsSmoke, use educ
+# make a variable of the logit of the predicted values
+logit.use <- log(dgcurMod$fitted.values/(1-dgcurMod$fitted.values))
+
+# make a small data frame with the logit variable and the (yearsSmoke) educ predictor
+linearity.data <- data.frame(logit.use, education = dgcurMod$model$educ)
+
+# create a plot with linear and actual relationships shown
+linearPlot <- linearity.data %>%
+    ggplot(aes(x = education, y = logit.use))+
+    geom_point(aes(size = "Observation"), color = "gray50", alpha = .6) +
+    geom_smooth(se = FALSE, aes(color = "Loess curve")) + 
+    geom_smooth(method = lm, se = FALSE, aes(color = "linear")) + 
+    theme_minimal(base_size = 14, base_family = "serif") +
+    labs(x = "Education", y = "Log-odds of DG_cur predicted probability") +
+    scale_color_manual(name="Type of fit line", values=c("gray50", "black")) +
+    scale_size_manual(values = 1.5, name = "")
+linearPlot
