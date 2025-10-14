@@ -332,7 +332,23 @@ car::crPlots(model=phq9lm, terms = ~ educ,
 
 # How would you go on, if you decided to run a so-called 'robust linear regression model' instead of the default (or conventional) linear regression model?
 
+library(MASS)
+library(boot)
+library(car)
 
+set.seed(1)
+robustphq9lm <- MASS::rlm(fmla, data=maricz, maxit=200)
+set.seed(1)
+# ?car::Boot
+bootphq9lm <- car::Boot(robustphq9lm, R=1000)
+phq9Df <- as.data.frame(car::Confint(object=bootphq9lm, level=.95, type="norm"))
+colnames(phq9Df) <- c("Estimate", "l95", "u95")
+phq9Df
+
+# Conclusion: We have conducted yet another regression model with no specifically expressed goal. This is what Carlin and Moreno-Betancur refer to as "The logic here seems entirely backwards". In other words: Bad, or at least not good, research practice.
+
+# What is good research practice?
+# First, think. Then, think again (if needed); try to communicate your thoughts to others and see whether your thoughts make sense to others or not. And so on. Then, at the very end, connect your thoughts and your clearly expressed expectations of what the data should contain and how the data should confirm your expectations (hypotheses), in the form of a certain part of the results of an adequate statistical analysis.
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
