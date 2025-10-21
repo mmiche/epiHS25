@@ -1,0 +1,19 @@
+---
+title: "My open science project example 2"
+format: html
+editor: visual
+---
+
+## Simulate data
+
+For the empirical analysis part, e.g., open code, of your project, simulate data only if you want to do that **really** bad. I recommend to rather use some already existing dataset. Remember, you are free to do whatever you want, as long as you make everything transparent (= explain what you did and why you chose to do that).
+
+If you really have to simulate data, this [URL](https://stirlingcodingclub.github.io/simulating_data/index.html) might be helpful and/or this [book](https://doi.org/10.1007/978-3-662-70561-2).
+
+## Reuse existing data
+
+Maybe this [URL](https://savvystatistics.com/my-open-access-psychology-datasets/) contains a dataset, which is of at least some interest to you, for this open science psychology project? Also, online books like this [URL](https://alexander-pastukhov.github.io/data-analysis-using-r-for-psychology/index.html) use one or more openly accessible psychology dataset(s), of which you may want to use parts of? Or maybe you want to make use of the dataset of the 500 students from Bangladesh (from our first seminar exercise)?
+
+## In any case
+
+I want to remind you that analyzing data is pointless, unless you have a very clear idea (beforehand!) what and why you want to analyse that data, which should also instruct you in how to analyse it (and/or what part(s) of the output show what you are interested in). Do also not forget: Any data analytic mechanism, e.g., linear regression, t-test, every deep learning AI algorithm etc. takes numbers as input, not data. The data validity is the most important issue of every real-world data analysis. No tool (or "algorithm") exists which can produce anything useful from corrupt data. The researcher, not the analysis tool, are responsible for justifying whether and to what degree the data is valid (= represents what it's supposed to represent from the real world).
