@@ -1,0 +1,62 @@
+---
+title: "Predictive modeling"
+author: Marcel Miché
+#bibliography: referencesPredMod.bib
+format: html
+editor: visual
+---
+
+## Predictive modeling
+
+Predictive modeling is in some respects different from explanatory modeling. Explanatory modeling is (still) the almost exclusive way of data modeling in the psychological curriculum at the university. That is, still mostly very few students appear to be interested in finding out what predictive modeling is, whether it works, what "it works" might mean, and - if "it works" - how it works. Unfortunately, more often than not, university courses which aim to teach predictive modeling, succeed in reaching this aim only with a small part of the already small minority who visit such courses.
+
+### Easy or complicated?
+
+Everybody, even people "bad at math", can imagine that there is a mathematical equation, which returns a single number, after certain numbers have been plugged into this equation. I take the example of our seminar, when I demonstrated prediction (while violating a few important conditions), using the data by all 11 students who answered the questionnaire. I used question 13 as the outcome, whereas using questions 4, 6, 7, and 9 as predictors. For the first run, I used the data of the students 2-11 to develop this prediction model (= to produce this linear mathematical equation):
+
+```{r chunk1, echo=TRUE, eval=FALSE}
+# (Intercept)           Q4           Q6           Q7           Q9  
+#     8.39377     -0.19276     -0.08285      0.27528     -0.14511
+```
+
+I then took the data of the 1st student, regarding the questions Q4, Q6, Q7, and Q9, which were:
+
+```{r chunk2, echo=TRUE, eval=FALSE}
+# 1, 8, 10, 9.
+```
+
+Finally, I plugged this data into the linear equation (= the developed prediction model), in order to compute the predicted outcome value for the 1st student.
+
+```{r chunk3, echo=TRUE, eval=TRUE}
+-.19276*1 + (-.08285*8) + .27528*10 + (-0.14511*9) + 8.39377
+```
+
+The predicted outcome value (8.985) for the 1st student was close to his/her actual answer to question 13, namely 10. Squared prediction error is $(10-8.985)^2\approx1.03$.
+
+#### Cross-validation (CV)
+
+CV is among the most important aspects of predictive modeling. Simply because this is exactly how a prediction model is supposed to be used in practice, if it will be recommended for implementation in the real world.
+
+**In what way is CV how a prediction model would be used in the real world?**
+
+The CV (in the above example: leave one student out CV) pretends that the developed prediction model had been used without any knowledge of the outcome value (of the 1st student). That is, in order to get any useful indication of how well the model may predict an outcome which is not known (because it has not yet developed), we have to conduct predictive modeling in this "as if" way. Only this "as if" (the outcome was unknown) way can produce the kind of information that is needed in order to either argue for or against implementation of the prediction model in the real world, e.g., in clinical practice.
+
+## Summary
+
+This extremely short and superficial description is the core principle of how and what for predictive modeling is supposed to be used. Everything else in predictive modeling research is there to achieve the best possible prediction. I just mention three examples of what I mean by "everything else":
+
+1.  Instead of a linear equation, nonlinear equations may be preferred, which is why other prediction models, instead of multiple linear regression, may be used, e.g., random forest. One of the main problems of these kinds of prediction models is that they become exceedingly difficult to comprehensively present to clinicians and patients. In order to use a prediction model in the real world, especially in a health-related context, it **must** be possible to transparently and comprehensively explain to everyone, not just to a "well-educated" subpopulation, how the model produces the predictions. This mandatory requirement gets clearest, if you imagine that a therapist used the information of the prediction model, in order to make a health-related decision for a patient. This patient then dies. The therapist gets sued. The judge possibly asks the therapist to explain how the prediction model works, trying to find out whether the therapist simply has put his blind faith into this prediction model or whether s/he may have acted responsibly, by being well-informed about using that prediction software.
+
+2.  If a nonlinear (e.g., machine learning) prediction model is preferred, then tuning its hyperparameters will often be recommended (remember, for the purpose of achieving the best possible prediction). One of the main problems of tuning hyperparameters is the necessity of having much more data available, compared to not tuning hyperparameters.
+
+    As a side note, hyperparamters can be best understood in analogy to using a digital camera in a dark environment, e.g., outside at night. The camera represents the prediction model, the best possible prediction result is represented by the final photograph that you wish to make. In order to get the optimal photograph (despite darkness), you change - if you know how - a selection of settings in the camera. If you are a professional photographer you may even know the specific range of optimal values for the specific "dark environment" settings. Importantly, just as with hyperparameter tuning, it is the user (= the person who conducts the predictive modeling) who actively selects and sets the values of the model's settings, **before** developing the prediction model with a dataset (= before using the camera to make the photograph at night).
+
+3.  Since the central, and eventually the only, goal of predictive modeling is the use of the prediction model in the real world (to help mitigating a real problem), it is likewise of central importance how the "performance" of the prediction model is evaluated and how this evaluation is presented to those who are supposed to really(!) use that prediction model. For example, the above single squared prediction error of 1.03 may look nice at first sight. However, a single prediction error means absolutely nothing without showing all other prediction errors, to getter a fuller picture. But then, the problem occurs how to summarize all prediction errors. Furthermore, does it (the squared prediction error) practically mean anything? It should never be trusted that the "developers" of a prediction model considered this extremely important question. Indeed, it is very rarely the case that the question of practical meaning and utility of a prediction model is addressed in predictive research papers (Ashton et al., 2023).
+
+### Final question
+
+Everything that you have read in this document, has it been complicated or easy to understand?
+
+## Reference
+
+Ashton, J. J., Young, A., Johnson, M. J., & Beattie, R. M. (2023). Using machine learning to impact on long-term clinical care: principles, challenges, and practicalities. *Pediatric Research*, *93*(2), 324-333.
